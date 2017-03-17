@@ -17,7 +17,7 @@ import java.util.*;
 /**
  * Created by fanjiangqi on 2017/3/5.
  */
-@Controller
+//@Controller
 public class IndexController {
     @RequestMapping(path = {"/","/welcome"})
     @ResponseBody
@@ -45,9 +45,9 @@ public class IndexController {
         }
         model.addAttribute("colors", colors);
         model.addAttribute("map", map);
-        model.addAttribute("user", new User("fan"));
+        model.addAttribute("user", new User());
 
-        return "news";
+        return "News";
     }
     @RequestMapping(value = {"/request"})
     @ResponseBody

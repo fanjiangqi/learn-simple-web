@@ -1,6 +1,6 @@
 package com.fanjiangqi.service;
 
-import com.fanjiangqi.dao.UserDao;
+import com.fanjiangqi.dao.UserDAO;
 import com.fanjiangqi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     @Autowired
-    private UserDao userDao;
-    public User getUser(String name){
-        return userDao.selectByUserName(name);
+    private UserDAO userDAO;
+    public User getUser(int id){
+        return userDAO.selectByUserId(id);
     }
 }
