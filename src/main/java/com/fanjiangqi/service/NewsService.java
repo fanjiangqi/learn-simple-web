@@ -14,6 +14,7 @@ import java.util.List;
 public class NewsService {
     @Autowired
     private NewsDAO newsDAO;
+
     public List<News> getLatestNews(int userId, int offset, int limit){
         return newsDAO.selectByUserIdAndOffset(userId,offset,limit);
     }

@@ -42,6 +42,10 @@
     hworld1: $hworld1
     hworld2: $hworld2
     $!{colors.size()}
+
+    #foreach($color in $colors)
+        $color
+    #end
 </pre>
 </body>
 </html>

@@ -61,6 +61,9 @@ public class InitDatabaseTests {
         Assert.assertNull(userDAO.selectByUserId(1));
 
     }
-
+        @Test
+    public void testNewsDao(){
+        newsDAO.selectByUserIdAndOffset(0,0,10);
+        }
 
 }
