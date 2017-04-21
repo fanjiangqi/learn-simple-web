@@ -141,7 +141,7 @@ public class MultiThread {
     private static int userId;
     public static void testThreadLocal(){
 
-     /*   for (int i = 0; i < 10; ++i){
+        for (int i = 0; i < 10; ++i){
             final int finalI = i;
             new Thread(new Runnable() {
                 @Override
@@ -152,9 +152,9 @@ public class MultiThread {
                     System.out.println(String.format("Thread %d : %d",finalI,threadLocalUserId.get()));
                 }
             }).start();
-        }*/
+        }
 
-        for (int i = 0; i < 10; ++i){
+       /* for (int i = 0; i < 10; ++i){
             final int finalI = i;
             new Thread(new Runnable() {
                 @Override
@@ -165,7 +165,7 @@ public class MultiThread {
                     System.out.println(String.format("Thread %d : %d",finalI,userId));
                 }
             }).start();
-        }
+        }*/
 
 
     }
@@ -234,9 +234,10 @@ public class MultiThread {
     public static void main(String[] args) {
         //testThread();
         //testSynchronized();
-        //testBlockQueue();
+        testBlockQueue();
         //testThreadLocal();
         //testExecutor();
-        testFuture();
+        //testFuture();
+
     }
 }

@@ -1,51 +1,55 @@
 <html>
 <body>
 <pre>
-    Hello, VM.
-    ## 你看不到我
-    $!{value1}
-    $!{value2}  ##将!表示，如果变量不存在就不显示
-    ${value3}
+Hello VM.
 
-    #foreach ($color in $colors)
-        Color $!{foreach.index}/$!{foreach.count} : $!{color}
-    #end
+## 你看不到我
 
-    #foreach($key in $map.keySet())
-       Number $!{foreach.index}/$!{foreach.count} : $!{key} $map.get($key)
-    #end
+#*
+这里都看不到
+*#
 
-    #foreach($kv in $map.entrySet())
-        Number $!{foreach.index}/$!{foreach.count} : $kv.key $kv.value
-    #end
+value1:$!{value1}
+$!{value2}
+${value3}
 
-    User: $!{user.name}
-    User: $!{user.getName()}
+#foreach ($color in $colors)
+Color $!{foreach.index}/$!{foreach.count}: $!{color}
+#end
 
-    #set($title = "nowcoder")
-    Include: #include("header.vm")
-    <br>
-    Parse: #parse("header.vm")
+#foreach($key in $map.keySet())
+Number $!{foreach.index}/$!{foreach.count}: $!{key} $map.get($key)
+#end
 
-    #macro (render_color, $color, $index) #有错误
-        Color By Macro $index, $color
-    #end
+#foreach($kv in $map.entrySet())
+Number $!{foreach.index}/$!{foreach.count}: $!{kv.key} $!{kv.value}
+#end
 
-    #foreach ($color in $colors)
-        #render_color($color, $foreach.index)
-    #end
 
-    #set($hello = "hello")
-    #set($hworld1 = "$!{hello} world")
-    #set($hworld2 = '$!{hello} world') #单引号不解析
+User:$!{user.name}
+User:$!{user.getName()}
 
-    hworld1: $hworld1
-    hworld2: $hworld2
-    $!{colors.size()}
+#set($title = "nowcoder")
+Include: #include("header.vm") <br>
+Parse:#parse("header.vm")
 
-    #foreach($color in $colors)
-        $color
-    #end
+#macro (render_color, $color, $index)
+Color By Macro $index, $color
+#end
+
+#foreach ($color in $colors)
+    #render_color($color, $foreach.index)
+#end
+
+#set($hello = "hello")
+#set($hworld1 = "$!{hello} world")
+#set($hworld2 = '$!{hello} world')
+
+hworld1:$hworld1
+hworld2:$hworld2
+
+$!{colors.size()}
+
 </pre>
 </body>
 </html>

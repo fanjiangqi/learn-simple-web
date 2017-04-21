@@ -20,6 +20,7 @@ public class LogAspect {
     @Before("execution(* com.fanjiangqi.controller.*Controller.*(..))")
     public void beforeMethod(JoinPoint joinPoint){
         StringBuilder sb = new StringBuilder();
+        sb.append(joinPoint.getSignature().toString());
         for (Object arg: joinPoint.getArgs()){
                 sb.append("arg:" + arg.toString() + "|");
         }

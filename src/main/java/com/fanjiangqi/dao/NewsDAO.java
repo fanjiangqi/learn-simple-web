@@ -1,9 +1,7 @@
 package com.fanjiangqi.dao;
 
 import com.fanjiangqi.model.News;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,4 +21,12 @@ public interface NewsDAO {
     List<News> selectByUserIdAndOffset(@Param("userId") int userId, @Param("offset") int offset,
                                        @Param("limit") int limit);
 
+    @Select({"select", SELECT_FIELDS, "from", TABLE_NAME, "where id=#{id}"})
+    News selectById(@Param("id") int id);
+
+    @Update({"update", TABLE_NAME, "set comment_count=#{count} where id=#{id}"})
+    int updateCommentCount(@Param("count") int count, @Param("id") int id);
+
+    @Update({"update", TABLE_NAME, "set like_count=#{likeCount} where id=#{id}"})
+    int updateLikeCount(@Param("likeCount") int count, @Param("id") int id);
 }
