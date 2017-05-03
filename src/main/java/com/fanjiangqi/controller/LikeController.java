@@ -1,5 +1,9 @@
 package com.fanjiangqi.controller;
 
+import com.fanjiangqi.asyn.EventHandler;
+import com.fanjiangqi.asyn.EventModel;
+import com.fanjiangqi.asyn.EventProducer;
+import com.fanjiangqi.asyn.EventType;
 import com.fanjiangqi.model.EntityType;
 import com.fanjiangqi.model.HostHolder;
 import com.fanjiangqi.service.LikeService;
@@ -24,12 +28,16 @@ public class LikeController {
     LikeService likeService;
     @Autowired
     NewsService newsService;
+    @Autowired
+    EventProducer eventProducer;
 
     @RequestMapping(value = {"/like"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String like(@RequestParam("newsId") int newsId){
         long likeCount = likeService.like(EntityType.NEWS_ENTITY, newsId, hostHolder.getUser().getId());
         newsService.updateLikeCount( (int)likeCount, newsId);
+        eventProducer.fireEvent(new EventModel(EventType.LIKE).setActorId( hostHolder.getUser().getId())
+        .setEntityOwnerId(newsService.getNewsById(newsId).getUserId()).setEntityId(newsId));
         return ToutiaoUtil.getJSONString(0,String.valueOf(likeCount));
     }
     @RequestMapping(value = {"/dislike"}, method = {RequestMethod.GET, RequestMethod.POST})

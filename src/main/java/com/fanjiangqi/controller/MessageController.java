@@ -51,7 +51,7 @@ public class MessageController {
     }
     @RequestMapping(path = {"/msg/list"}, method = RequestMethod.GET)
     public String conversationList(Model model){
-        try {
+       try {
             int localUserId = hostHolder.getUser().getId();
             List<Message> conversationList = new ArrayList<>();
             conversationList = messageService.getConversationList(localUserId,0,10);
@@ -68,8 +68,8 @@ public class MessageController {
                 conversations.add(vo);
             }
             model.addAttribute("conversations",conversations);
-        }catch (Exception e){
-            logger.error("会话列表显示错误"+e.getMessage());
+       }catch (Exception e){
+          logger.error("会话列表显示错误"+e.getMessage());
         }
         return "letter";
     }
